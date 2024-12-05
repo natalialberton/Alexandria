@@ -45,7 +45,7 @@ body {
 }*/
 
 .staff{
-    margin-right: 55%;
+    align-items: center;
     margin-top: 13%;
 }
 
@@ -212,12 +212,18 @@ button:hover {
 }
 
 #liscliente{
-    width:auto;
+    width:50%;
     margin-right:5%;
+    left:200px;
     flex: 1; 
     position: relative;
-    top: -350px;
+    top: -280px;
 
+}
+
+#campo5{
+    margin-top:30%;
+   margin-right: 60%;
 }
 
 
@@ -301,14 +307,16 @@ button:hover {
 }
 
 #campo4{
+
+   width:70%;
+   align-content: center;
+    flex: 1;
+    margin-top:10%;
+    right:220px; 
+    position: relative;
+    top: -20px;
     
-    width: 100%;
-    flex: 1; /* Faz com que o campo ocupe o espaço restante disponível */
-    text-align: center;
-    margin-bottom: 20%;  /* Ajuste de margem */
-    max-width: 500px; 
-    width: auto;  /* A largura será ajustada de acordo com o conteúdo */
-    max-width: 100%;  
+  
 }
 
 legend {

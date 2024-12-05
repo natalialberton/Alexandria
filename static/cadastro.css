@@ -145,7 +145,7 @@ header{
 
 .two-forms{
     display: flex;
-    gap: 10px;
+    gap: 5px;
 }
 
 .input-field{

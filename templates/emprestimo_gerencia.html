@@ -63,11 +63,11 @@
                         <td>
                             <button class="btn-editar btn-editar-emprestimo" 
                                     data-id="{{emprestimo.id}}" 
-                                    data-nome="{{emprestimo.livro}}" 
-                                    data-usuario="{{emprestimo.cliente}}" 
-                                    data-email="{{emprestimo.data_emprestimo}}" 
-                                    data-telefone="{{emprestimo.data_devolucao}}" 
-                                    data-tipo-usuario="{{emprestimo.status_emprestimo.value}}">
+                                    data-livro="{{emprestimo.livro}}" 
+                                    data-cliente="{{emprestimo.cliente}}" 
+                                    data-data-emprestimo="{{emprestimo.data_emprestimo}}" 
+                                    data-data-devolucao="{{emprestimo.data_devolucao}}" 
+                                    data-status-emprestimo="{{emprestimo.status_emprestimo.value}}">
                                     <i class='bx bx-edit-alt'></i>
                             </button>
                         </td>
@@ -111,5 +111,7 @@
         </form>
     </div>
 </div>
+
+<script src="../static/js/popupEmprestimo.js"></script>
 
 {% endblock %}

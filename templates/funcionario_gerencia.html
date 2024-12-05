@@ -1,0 +1,110 @@
+{% extends 'base_funcionario.html' %}
+
+{% block head %}
+<title> ALEXANDRIA - Funcionários </title>
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="staff" id="staf">
+    <section class="gerenciamento">
+        <div class="gerenciamento-titulo">
+            <h2>Funcionários</h2>
+        </div>
+        <div class="forms-cadastro" id="forms-funcionarios">
+            <form action="/cadastramento-funcionarios" method="POST">
+            <div class="bookcad" id="hdcliente">
+                <header>Cadastramento</header>
+            </div>
+            <div class="namel"> <input type="text" name="nome" id="nome" placeholder="Nome" required></div>
+                <input type="text" name="usuario" id="usuario" placeholder="Usuário" required>
+                <input type="text" name="email" id="email" placeholder="Email" required>
+                <input type="text" name="telefone" id="telefone" placeholder="Telefone" required>
+                <input type="text" list="tipos-usuario" name="tipo-usuario" id="tipo-usuario" placeholder="Tipo de usuário" required>
+                <datalist id="tipos-usuario">
+                    <option value={{TipoUsuario.ADMIN.value}}></option>
+                    <option value={{TipoUsuario.FUNCIONARIO.value}}></option>
+                </datalist>
+                <input type="password" name="senha" id="senha" placeholder="Senha" required>
+                <input type="password" name="confirma-senha" id="confirma-senha" placeholder="Confirme sua senha" required>
+                <button class='btn-submit' type='submit'>Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+        <div class="lista" id="campo4">
+            <div class="listagem">
+                {% if usuarios | length < 1 %} <p>Não há nenhum funcionário cadastrado...</p>
+                {% else %}
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Usuário</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Tipo de Usuário</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{usuario.id}}</td>
+                        <td>{{usuario.nome}}</td>
+                        <td>{{usuario.usuario}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td>{{usuario.telefone}}</td>
+                        <td>{{usuario.tipo_usuario.value}}</td>
+                        <td>{{usuario.status_atividade.value}}</td>
+                        <td>
+                            <button class="btn-editar btn-editar-usuario" 
+                                    data-id="{{usuario.id}}" 
+                                    data-nome="{{usuario.nome}}" 
+                                    data-usuario="{{usuario.usuario}}" 
+                                    data-email="{{usuario.email}}" 
+                                    data-telefone="{{usuario.telefone}}" 
+                                    data-tipo-usuario="{{usuario.tipo_usuario.value}}" 
+                                    data-status-atividade="{{usuario.status_atividade.value}}"
+                                    data-senha="{{usuario.senha}}">
+                                    <i class='bx bx-edit-alt'></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+</main>
+
+<!--POPUP PARA EDITAR CAMPOS DA TABELA-->
+<div class="popup-overlay-edicao" id="popup-edicao-funcionario">
+    <div class="edicao-popup">
+        <form class="forms-edicao" id="form-edicao-funcionario" method="POST">
+            <header>Edição de Funcionário</header>
+            <input type="text" name="nome-edicao" id="nome-edicao" placeholder="Nome" required>
+            <input type="text" name="usuario-edicao" id="usuario-edicao" placeholder="Usuário" required>
+            <input type="text" name="email-edicao" id="email-edicao" placeholder="Email" required>
+            <input type="text" name="telefone-edicao" id="telefone-edicao" placeholder="Telefone" required>
+            <input type="text" list="tipos-usuario-edicao" name="tipo-usuario-edicao" id="tipo-usuario-edicao" placeholder="Tipo de usuário" required>
+                <datalist id="tipos-usuario-edicao">
+                    <option value={{TipoUsuario.ADMIN.value}}></option>
+                    <option value={{TipoUsuario.FUNCIONARIO.value}}></option>
+                </datalist>
+            <input type="text" list="lista-status-atividade-edicao" name="status-atividade-edicao" id="status-atividade-edicao" placeholder="Status" required>
+                <datalist id="lista-status-atividade-edicao">
+                    <option value={{StatusAtividade.ATIVO.value}}></option>
+                    <option value={{StatusAtividade.INATIVO.value}}></option>
+                </datalist>
+            <input type="password" name="senha-edicao" id="senha-edicao" placeholder="Senha" required>
+            <input type="password" name="confirma-senha-edicao" id="confirma-senha-edicao" placeholder="Confirme sua senha" required>
+            <button type="submit" class="btn-salvar">Salvar</button>
+            <button id="btn-fecha-funcionario">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<script src="../static/js/popupFuncionario.js"></script>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='funcionario.css')}}" />
+    <link rel="stylesheet" href="{{url_for('static', filename='popup.css')}}" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <script src="{{url_for('static', filename='popupConfig.js')}}"></script>
+    {% block head %} {% endblock %}
+</head>
+
+<body>
+    <header>
+        <div class="nav-logo">
+            <div class="ale">
+            <h1>ALEXANDRIA</h1>
+            </div>
+        </div>
+        <nav>
+            <div class="icon">
+            <a href="home"><i class='bx bx-home'></i> Home </a>
+            <a href="gerenciamento-livros"> <i class='bx bx-group'></i> Livros </a>
+            <a href="gerenciamento-emprestimos"><i class='bx bxs-book'></i></i> Empréstimos </a>
+            <a href="gerenciamento-clientes"> <i class='bx bx-group'></i> Clientes </a>
+
+            {% if tipo_usuario == 'ADMIN' %}
+                <a href="gerenciamento-funcionarios"> Funcionários </a>
+            {% endif %}
+            <a href="logout"> Logout </a>
+        </nav>
+    </div>
+    </header>
+
+    {% block body %} {% endblock %}
+</body>
+</html>

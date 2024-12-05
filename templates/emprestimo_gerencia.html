@@ -1,0 +1,115 @@
+{% extends 'base_funcionario.html' %}
+
+{% block head %}
+<title> ALEXANDRIA - Empréstimos </title>
+{% endblock %}
+
+{% block body %}
+<main>
+
+    <div class="clientes">
+    <section class="gerenciamento">
+        <div class="gerenciamento-titulo">
+            <h2>Empréstimos</h2>
+        <div class="forms-cadastro" id="forms-emprestimos">
+            <form action="/lancamento-emprestimo" method="POST">
+                <header>Novo Empréstimo</header>
+                <input list="lista-livros" name="livro" id="livro" placeholder="Livro" required>
+                <datalist id="lista-livros">
+                    {% for livro in livros %}
+                        <option value="{{livro.titulo}}"></option>
+                    {% endfor %}
+                </datalist>
+                <input list="lista-clientes" name="cliente" id="cliente" placeholder="Cliente" required>
+                <datalist id="lista-clientes">
+                    {% for cliente in clientes %}
+                        <option value="{{cliente.nome}}"></option>
+                    {% endfor %}
+                </datalist>
+                <input type="date" name="data-emprestimo" id="data-emprestimo" placeholder="Data empréstimo" required>
+                <input type="date" name="data-devolucao" id="data-devolucao" placeholder="Data devolução" required>
+                <input list="lista-status-emprestimo" name="status-emprestimo" id="status-emprestimo" placeholder="Status" required>
+                <datalist id="lista-status-emprestimo">
+                    <option value="{{StatusEmprestimo.ATIVO.value}}"></option>
+                    <option value="{{StatusEmprestimo.PENDENTE.value}}"></option>
+                    <option value="{{StatusEmprestimo.FINALIZADO.value}}"></option>
+                </datalist>
+                <button class='btn-submit' type='submit'>Cadastrar</button>
+            </form>
+        </div>
+
+        <div class="lista" id="campo4">
+            <div class="listagem">
+                {% if emprestimos | length < 1 %} <p>Não há nenhum empréstimo lançado...</p>
+                {% else %}
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Livro</th>
+                        <th>Cliente</th>
+                        <th>Data Emp</th>
+                        <th>Data Dev</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                    {% for emprestimo in emprestimos %}
+                    <tr>
+                        <td>{{emprestimo.id}}</td>
+                        <td>{{emprestimo.livro}}</td>
+                        <td>{{emprestimo.cliente}}</td>
+                        <td>{{emprestimo.data_emprestimo}}</td>
+                        <td>{{emprestimo.data_devolucao}}</td>
+                        <td>{{emprestimo.status_emprestimo.value}}</td>
+                        <td>
+                            <button class="btn-editar btn-editar-emprestimo" 
+                                    data-id="{{emprestimo.id}}" 
+                                    data-nome="{{emprestimo.livro}}" 
+                                    data-usuario="{{emprestimo.cliente}}" 
+                                    data-email="{{emprestimo.data_emprestimo}}" 
+                                    data-telefone="{{emprestimo.data_devolucao}}" 
+                                    data-tipo-usuario="{{emprestimo.status_emprestimo.value}}">
+                                    <i class='bx bx-edit-alt'></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    </div>
+</main>
+
+<!--POPUP PARA EDITAR CAMPOS DA TABELA-->
+<div class="popup-overlay-edicao" id="popup-edicao-emprestimo">
+    <div class="edicao-popup">
+        <form class="forms-edicao" id="form-edicao-emprestimo" method="POST">
+            <header>Edição de Empréstimo</header>
+            <input list="lista-livros-edicao" name="livro-edicao" id="livro-edicao" placeholder="Livro" required>
+                <datalist id="lista-livros-edicao">
+                    {% for livro in livros %}
+                        <option value="{{livro.nome}}"></option>
+                    {% endfor %}
+                </datalist>
+                <input list="lista-clientes-edicao" name="cliente-edicao" id="cliente-edicao" placeholder="Cliente" required>
+                <datalist id="lista-clientes-edicao">
+                    {% for cliente in clientes %}
+                        <option value="{{cliente.nome}}"></option>
+                    {% endfor %}
+                </datalist>
+                <input type="date" name="data-emprestimo-edicao" id="data-emprestimo-edicao" placeholder="Data empréstimo" required>
+                <input type="date" name="data-devolucao-edicao" id="data-devolucao-edicao" placeholder="Data devolução" required>
+                <input list="lista-status-emprestimo-edicao" name="status-emprestimo-edicao" id="status-emprestimo-edicao" placeholder="Status" required>
+                <datalist id="lista-status-emprestimo-edicao">
+                    <option value="{{StatusEmprestimo.ATIVO.value}}"></option>
+                    <option value="{{StatusEmprestimo.PENDENTE.value}}"></option>
+                    <option value="{{StatusEmprestimo.FINALIZADO.value}}"></option>
+                </datalist>
+            <button type="submit" class="btn-salvar">Salvar</button>
+            <button id="btn-fecha-emprestimo">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

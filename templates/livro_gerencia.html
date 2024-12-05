@@ -1,0 +1,232 @@
+{% extends 'base_funcionario.html' %}
+
+{% block head %}
+<title>ALEXANDRIA - Livros</title>
+{% endblock %}
+
+{% block body %}
+<main>
+ 
+    <section class="gerenciamento">
+        <div class="livros">
+            <div class="gerenciamento-titulo">
+                <h2>Livros</h2>
+            </div>
+            <div class="forms-cadastro" id="forms-livros">
+                <form action="/cadastramento-livros" method="POST">
+                    <header>Cadastramento</header>
+                    <input type="text" name="titulo" id="titulo" placeholder="Título" required>
+                    <input type="text" name="isnb" id="isnb" placeholder="ISNB" required>
+                    <input list="autores" id="autor" name="autor" placeholder="Autor" required>
+                    <datalist id="autores">
+                        {% for autor in autores %}
+                            <option value="{{autor.nome}}"></option>
+                        {% endfor %}
+                    </datalist>
+                    <input list="categorias" id="categoria" name="categoria" placeholder="Categoria" required>
+                    <datalist id="categorias">
+                        {% for categoria in categorias %}
+                            <option value="{{categoria.nome}}"></option>
+                        {% endfor %}
+                    </datalist>
+
+                    <input type="text" name="ano-publicacao" id="ano-publicacao" placeholder="Ano de Publicação" required>
+                    <input type="text" name="estoque" id="estoque" placeholder="Quantidade em estoque" required>
+
+                    <button class="btn-submit" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="listagem" id="campo1">
+            {% if livros | length < 1 %} <p>Não há nenhum livro cadastrado...</p>
+                {% else %}
+                <table>
+                    <tr>
+                        <th>Livro</th>
+                        <th>Autor</th>
+                        <th>Categoria</th>
+                        <th>Ano Publicação</th>
+                        <th>ISNB</th>
+                        <th>Estoque</th>
+                        <th></th>
+                    </tr>
+                    {% for livro in livros %}
+                    <tr>
+                        <td>{{livro.titulo}}</td>
+                        <td>{{livro.autor}}</td>
+                        <td>{{livro.categoria}}</td>
+                        <td>{{livro.ano_publicacao}}</td>
+                        <td>{{livro.isnb}}</td>
+                        <td>{{livro.estoque}}</td>
+                        <td>
+                            <button class="btn-editar btn-editar-livro"
+                                    data-id="{{livro.id}}"
+                                    data-titulo="{{livro.titulo}}"
+                                    data-autor="{{livro.autor}}"
+                                    data-categoria="{{livro.categoria}}"
+                                    data-ano-publicacao="{{livro.ano_publicacao}}"
+                                    data-isnb="{{livro.isnb}}"
+                                    data-estoque="{{livro.estoque}}">
+                                    <i class='bx bx-edit-alt'></i>
+                            </button>
+                
+                            <a href="/deleta-livro/{{livro.id}}"><i class='bx bx-trash'></i></a>
+                           
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+        </div>
+    </div>
+    </section>
+
+    <div class="categoria" id="nome">  <!--segundo-->
+    <section class="gerenciamento">
+        <div class="gerenciamento-titulo">
+            <h2>Categorias</h2>
+        </div>
+        <div class="forms-cadastro" id="forms-categoria">
+            <form action="/cadastramento-categorias" method="POST">
+                <header>Cadastramento</header>
+                <input type="text" name="nome-categoria" id="nome-categoria" placeholder="Nome" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+
+        <div class="listagem" id="campo2">
+            {% if categorias | length < 1 %} 
+                <p>Não há nenhuma categoria cadastrada...</p>
+            {% else %}
+            <table>
+                <tr>
+                    <th>Categoria</th>
+                    <th></th>
+                </tr>
+                {% for categoria in categorias %}
+                <tr>
+                    <td>{{categoria.nome}}</td>
+                    <td>
+                        <button class="btn-editar btn-editar-categoria"
+                                data-id="{{categoria.id}}" data-nome="{{categoria.nome}}">
+                                <i class='bx bx-edit-alt'></i>
+                        </button>
+                        <a href="/deleta-categoria/{{categoria.id}}"><i class='bx bx-trash'></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+    </section>
+
+
+    <section class="gerenciamento">
+    <div class="gerename">
+        <div class="gerenciamento-titulo" id="autores">
+            <h2>Autores</h2>
+        </div>
+        <div class="forms-cadastro" id="forms-autores">
+            <form action="/cadastramento-autores" , method="POST">
+            <div class="title"> <header>Cadastramento</header></div>
+                <input type="text" name="nome-autor" id="nome-autor" placeholder="Nome" required>
+                <input type="text" name="ano-nascimento" id="ano-nascimento" placeholder="Ano de Nascimento" required>
+                <input type="text" name="ano-morte" id="ano-morte" placeholder="Ano de Morte">
+         <legend>O último campo não precisa ser preenchido caso o autor ainda esteja vivo.</legend>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+        <div class="listagem" id="campo3">
+            {% if autores | length < 1 %} <p>Não há nenhum autor cadastrado...</p>
+                {% else %}
+                <table>
+                    <tr>
+                        <th>Autor</th>
+                        <th>Nascimento</th>
+                        <th>Morte</th>
+                        <th></th>
+                    </tr>
+                    {% for autor in autores %}
+                    <tr>
+                        <td>{{autor.nome}}</td>
+                        <td>{{autor.ano_nascimento}}</td>
+                        <td>{{autor.ano_morte}}</td>
+                        <td>
+                            <button class="btn-editar btn-editar-autor" 
+                                    data-id="{{autor.id}}" 
+                                    data-nome="{{autor.nome}}"
+                                    data-ano-nascimento="{{autor.ano_nascimento}}"
+                                    data-ano-morte="{{autor.ano_morte}}">
+                                    <i class='bx bx-edit-alt'></i>
+                            </button>
+                            <a href="/deleta-autor/{{autor.id}}"><i class='bx bx-trash'></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+        </div>
+    </section>
+</main>
+
+<!--POPUP PRA EDITAR CAMPOS DAS TABELAS-->
+<div class="popup-overlay-edicao" id="popup-edicao-categoria">
+    <div class="edicao-popup">
+        <form class="forms-edicao" id="form-edicao-categoria" method="POST">
+            <header>Edição de Categoria</header>
+            <input type="text" name="nome-categoria-edicao" id="nome-categoria-edicao" placeholder="Nome" required>
+            <button type="submit" class="btn-salvar">Salvar</button>
+            <button id="btn-fecha-categoria">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<div class="popup-overlay-edicao" id="popup-edicao-autor">
+    <div class="edicao-popup">
+        <form class="forms-edicao" id="form-edicao-autor" method="POST">
+            <header>Edição de Autor</header>
+            <input type="text" name="nome-autor-edicao" id="nome-autor-edicao" placeholder="Nome" required>
+            <input type="text" name="ano-nascimento-edicao" id="ano-nascimento-edicao" placeholder="Ano de Nascimento" required>
+            <input type="text" name="ano-morte-edicao" id="ano-morte-edicao" placeholder="Ano de Morte">
+            <button type="submit" class="btn-salvar">Salvar</button>
+            <button id="btn-fecha-autor">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<div class="popup-overlay-edicao" id="popup-edicao-livro">
+    <div class="edicao-popup">
+        <form class="forms-edicao" id="form-edicao-livro" method="POST">
+            <header>Edição de Livro</header>
+            <input type="text" name="titulo-edicao" id="titulo-edicao" placeholder="Título" required>
+            <input type="text" name="isnb-edicao" id="isnb-edicao" placeholder="ISNB" required>
+            <input list="autores-edicao" id="autor-edicao" name="autor-edicao" placeholder="Autor" required>
+            <datalist id="autores-edicao">
+                {% for autor in autores %}
+                    <option value="{{autor.nome}}"></option>
+                {% endfor %}
+            </datalist>
+            <input list="categorias-edicao" id="categoria-edicao" name="categoria-edicao" placeholder="Categoria" required>
+            <datalist id="categorias-edicao">
+                {% for categoria in categorias %}
+                    <option value="{{categoria.nome}}"></option>
+                {% endfor %}
+            </datalist>
+
+            <input type="text" name="ano-publicacao-edicao" id="ano-publicacao-edicao" placeholder="Ano de Publicação" required>
+            <input type="text" name="estoque-edicao" id="estoque-edicao" placeholder="Quantidade em estoque" required>
+
+            <button type="submit" class="btn-salvar">Salvar</button>
+            <button id="btn-fecha-livro">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<script src="../static/js/popupLivro.js"></script>
+
+{% endblock %}

@@ -1,0 +1,370 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --cor-primaria: #007bff;
+    --cor-primaria-hover: #0056b3;
+    --cor-secundaria: #28a745;
+    --cor-secundaria-hover: #218838;
+    --cor-fonte1: #333;
+    --cor-fonte2: #333;
+}
+
+
+
+
+body {
+    background: linear-gradient(to right, #100c0c, #493936);
+    font-family: Arial, sans-serif;
+    color: white;
+    height: 100dvh;
+    margin: 0;
+  
+}
+
+/*.nav-logo h1 {
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+    margin-left: 231px;
+    margin-top: 30px;
+}
+
+/*.cadastro {
+    position: center;
+    text-align: center;
+
+}*/
+
+.staff{
+    margin-right: 55%;
+    margin-top: 13%;
+}
+
+
+
+.nav-logo h1 {
+    position: absolute;  /* Usa absolute para colocar o contêiner no canto superior direito */
+    top: 30px;  /* Distância de 20px do topo */
+    font-size: 25px;
+    left: 232px;  /* Distância de 20px da direita */
+    display: flex;  /* Exibe os ícones e textos em linha (horizontalmente) */
+    align-items: center;  /* Alinha os itens verticalmente no centro */
+  
+
+}
+
+.icon{
+    position: absolute;  /* Usa absolute para colocar o contêiner no canto superior direito */
+    top: 25px;  /* Distância de 20px do topo */
+    right: 50px;  /* Distância de 20px da direita */
+    display: flex;  /* Exibe os ícones e textos em linha (horizontalmente) */
+    align-items: center;  /* Alinha os itens verticalmente no centro */
+    gap: 20px;  
+
+}
+
+.icon a {
+    color: white;  /* Cor do texto */
+    text-decoration: none;  /* Remove o sublinhado do link */
+    font-size: 16px;  /* Tamanho da fonte */
+    display: flex;  /* Exibe o ícone e o texto lado a lado */
+    align-items: center;  /* Alinha o ícone e o texto no centro verticalmente */
+    gap: 5px;  /* Espaço entre o ícone e o texto */
+
+}
+
+.icon a:hover {
+    color:#7c64528e;
+}
+
+#pesquisa-livro{
+    position: relative;
+    top: -310px;
+    margin-left: 60%;
+    width:18%;
+
+}
+
+.gerenciamento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.gerenciamento-titulo {
+    /*Livro, gerenciamento, etc*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.livros, .categorias {
+    margin-right: 60%;
+}
+
+.livros{
+    margin-top:20%;
+    flex: 1; 
+    position: relative;
+    top: -110px; 
+}
+
+#nome{
+    margin-right:60%;
+    flex: 1; 
+    position: relative;
+    top: -80px; 
+}
+
+.gerename{
+    margin-right: 60%;
+    flex: 1; 
+    position: relative;
+    top: -50px; 
+
+}
+
+.title{
+    margin-left: 25%;
+}
+
+
+input{
+
+    margin-top: 3%;
+    display: flex;
+    width: 100%;
+    font-size: 15px;
+    background: rgb(255, 255, 255);
+    color: #3629278e;
+    height: 30px;
+    padding: 0 10px 0 45px;
+    border-radius: 15px;
+    outline: none;
+    transition: .2s ease;
+}
+
+#nome-autor,
+#ano-nascimento,
+#ano-morte {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+    width:50%;
+    display: block;
+}
+
+button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 20px;
+    background: #3629278e;
+    border: 2px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2018178e;
+}
+
+
+.clientes{
+    margin-top:20%;
+    margin-right:55%;
+    flex: 1; 
+    position: relative;
+    top: -50px; 
+}
+
+.namel{
+    margin-top:10%;
+    flex: 1; 
+    position: relative;
+    top: 80px;
+   
+}
+
+.hdcliente{
+  
+    margin-right:55%;
+    left:6px;
+    flex: 1; 
+    position: relative;
+    top:10px;
+
+}
+
+#liscliente{
+    width:auto;
+    margin-right:5%;
+    flex: 1; 
+    position: relative;
+    top: -350px;
+
+}
+
+
+#forms-categoria button {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 20px;
+    background: #3629278e;
+    border: 2px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+#forms-categoria button a:hover {
+    background-color: #2018178e;
+}
+
+
+.forms-cadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.flash {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+
+
+/*CONFIGURAÇÕES TABELAS*/
+.listagem {
+    
+    width:100%;
+    margin-left: 50%;
+    background-color: #493936;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, -0, -0, 1);
+   
+}
+
+#campo1{
+    width:50%;
+    margin-left:45%;
+    flex: 1; 
+    position: relative;
+    top: -430px; 
+}
+
+#campo2{
+    width:30%;
+    margin-left:55%;
+    flex: 1; 
+    position: relative;
+    top: -380px;
+}
+
+#campo3{
+    width:auto;
+    margin-left: 40%;
+    flex: 1; 
+    position: relative;
+    top: -350px;
+}
+
+#campo4{
+    
+    width: 100%;
+    flex: 1; /* Faz com que o campo ocupe o espaço restante disponível */
+    text-align: center;
+    margin-bottom: 20%;  /* Ajuste de margem */
+    max-width: 500px; 
+    width: auto;  /* A largura será ajustada de acordo com o conteúdo */
+    max-width: 100%;  
+}
+
+legend {
+    font-size: 12px; 
+}
+
+#barrautores{
+    flex: 1; 
+    position: relative;
+    top: -360px;
+    margin-left: 40%;
+}
+
+.listagem p {
+    color: #666;
+}
+
+.listagem table {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.listagem th,
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+.listagem th {
+    background-color:  #3629278e;
+    color: #ffffff;
+}
+
+.listagem a,
+.listagem .btn-editar,
+.listagem .btn-salvar {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 20px;
+    background: #3629278e;
+    border: 2px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.listagem a:hover,
+.listagem .btn-editar:hover,
+.listagem .btn-salvar:hover {
+    background-color: #2018178e;
+}
+
+.listagem input,
+.listagem .btn-salvar {
+    display: none;
+}

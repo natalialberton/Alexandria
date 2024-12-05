@@ -1,0 +1,66 @@
+{% extends 'base_funcionario.html' %}
+
+{% block head %}
+<title> Home </title>
+<style>
+    /* POPPINS FONT */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100dvh;
+        margin: 0;
+        background: linear-gradient(to bottom, #1e1c1e, #3d2f2d);
+        flex-direction: column;
+    }
+
+    h2 {
+        font-size: 70px;
+        color: white;
+        margin-bottom: 20px;
+        /* Adiciona um pequeno espaço entre o título e o texto */
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    /* Estilo básico para o texto (efeito máquina de escrever) */
+    #texto {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 24px;
+        white-space: nowrap;
+        /* Impede que o texto quebre para a próxima linha */
+        overflow: hidden;
+        /* Esconde qualquer parte do texto que ultrapasse os limites do elemento */
+        color: white;
+        border-right: 3px solid rgb(255, 255, 255);
+        /* Simula o cursor da máquina de escrever */
+        margin-top: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+
+     
+    <h2>Bem-vindo, {{usuario}}</h2>
+    <div id="texto"></div>
+
+    <script>
+        var texto = "O conhecimento na palma da sua mão."; // Texto para digitar
+        var index = 0;
+        var speed = 100; // Velocidade do efeito (em milissegundos)
+
+        function escreverTexto() {
+            if (index < texto.length) {
+                document.getElementById("texto").innerHTML += texto.charAt(index);
+                index++;
+                setTimeout(escreverTexto, speed); // Chama a função novamente com o intervalo de tempo
+            }
+        }
+
+        escreverTexto(); // Chama a função para começar o efeito
+    </script>
+    </div>
+{% endblock %}

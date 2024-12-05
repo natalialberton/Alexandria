@@ -1,0 +1,78 @@
+{% extends 'base_funcionario.html' %}
+
+{% block head %}
+<title> ALEXANDRIA - Clientes </title>
+{% endblock %}
+
+{% block body %}
+<main>
+
+    <div class="clientes">
+    <section class="gerenciamento">
+        <div class="gerenciamento-titulo">
+            <h2>Clientes</h2>
+        <div class="forms-cadastro" id="forms-clientes">
+            <form action="/cadastramento-clientes" method="POST">
+            <div class="hdcliente"><header>Cadastramento</header></div>
+            <div class="namel"><input type="text" name="nome" id="nome" placeholder="Nome" required></div>
+                <input type="text" name="email" id="email" placeholder="Email" required>
+                <input type="text" name="telefone" id="telefone" placeholder="Telefone" required>
+                <button class='btn-submit' type='submit'>Cadastrar</button>
+                </div>
+            </div>
+            </form>
+        </div>
+
+        <div class="lista" id="liscliente">
+            <div class="listagem">
+                {% if clientes | length < 1 %} <p>Não há nenhum cliente cadastrado...</p>
+                {% else %}
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th></th>
+                    </tr>
+                    {% for cliente in clientes %}
+                    <tr>
+                        <td>{{cliente.id}}</td>
+                        <td>{{cliente.nome}}</td>
+                        <td>{{cliente.email}}</td>
+                        <td>{{cliente.telefone}}</td>
+                        <td>
+                            <button class="btn-editar btn-editar-cliente" 
+                                    data-id="{{cliente.id}}" 
+                                    data-nome="{{cliente.nome}}" 
+                                    data-email="{{cliente.email}}" 
+                                    data-telefone="{{cliente.telefone}}">
+                                    <i class='bx bx-edit-alt'></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+</main>
+
+<!--POPUP PARA EDITAR CAMPOS DA TABELA-->
+<div class="popup-overlay-edicao" id="popup-edicao-cliente">
+    <div class="edicao-popup">
+        <form class="forms-edicao" id="form-edicao-cliente" method="POST">
+            <header>Edição de Cliente</header>
+            <input type="text" name="cliente-nome-edicao" id="cliente-nome-edicao" placeholder="Nome" required>
+            <input type="text" name="cliente-email-edicao" id="cliente-email-edicao" placeholder="Email" required>
+            <input type="text" name="cliente-telefone-edicao" id="cliente-telefone-edicao" placeholder="Telefone" required>
+            <button type="submit" class="btn-salvar">Salvar</button>
+            <button id="btn-fecha-cliente">Cancelar</button>
+        </form>
+    </div>
+</div>
+
+<script src="../static/js/popupCliente.js"></script>
+
+{% endblock %}

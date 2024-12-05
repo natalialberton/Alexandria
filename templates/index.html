@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{{url_for('static', filename='cadastro.css')}}">
+    <title>ALEXANDRIA - Biblioteca </title>
+</head>
+<body>
+ <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo">
+            <p>ALEXANDRIA </p>
+        </div>
+        <div class="nav-button">
+            <button class="btn white-btn" id="loginBtn" onclick="login()">Entrar</button>
+            <button class="btn" id="registerBtn" onclick="register()">Cadastrar</button>
+        </div>
+        <div class="nav-menu-btn">
+            <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+        </div>
+    </nav>
+<!----------------------------- Form box ----------------------------------->    
+    <div class="form-box">
+        
+        <!------------------- login form -------------------------->
+        <form class="login-container" id="login" action="/login" method="POST">
+            <div class="top">
+                <header>Login</header>
+            </div>
+            <div class="input-box">
+                <input type="text" class="input-field" name="usuario" id="usuario" placeholder="Usuário">
+                <i class="bx bx-user"></i>
+            </div>
+            <div class="input-box">
+                <input type="password" class="input-field" name="senha" id="senha" placeholder="Senha">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit" class="submit" value="Entrar" id="btn_login">
+            </div>
+        </form>
+
+        <!------------------- registration form -------------------------->
+        <form class="register-container" id="register" action="/cadastro" method="POST">
+            <div class="top">
+                <header>Cadastrar</header>
+            </div>
+            <div class="two-col">
+                <div class="input-box">
+                    <input type="text", class="input-field one", name="nome-cadastro", id="nome-cadastro", placeholder="Nome">
+                    <i class="bx bx-user"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text", class="input-field one", name="usuario-cadastro", id="usuario-cadastro", placeholder="Usuário">
+                    <i class="bx bx-user"></i>
+                </div>
+            </div>
+            <div class="two-col">
+                <div class="input-box">
+                    <input type="text", class="input-field one", name="telefone-cadastro", id="telefone-cadastro", placeholder="Telefone">
+                    <i class="bx bx-envelope"></i>
+                </div>
+                <div class="input-box">
+                    <input type="text", class="input-field one", name="email-cadastro", id="email-cadastro", placeholder="Email">
+                    <i class="bx bx-envelope"></i>
+                </div>
+            </div>
+            <div class="input-box">
+                <input type="password", class="input-field", name="senha-cadastro", id="senha-cadastro", placeholder="Senha">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="password", class="input-field", name="confirma-senha-cadastro", id="confirma-senha-cadastro", placeholder="Confirme a Senha">
+                <i class="bx bx-lock-alt"></i>
+            </div>
+            <div class="input-box">
+                <input type="submit", class="submit", value="Cadastrar", id="btn_cadastrar">
+            </div>
+        </form>
+    </div>
+</div>   
+<script>
+   
+   function myMenuFunction() {
+    var i = document.getElementById("navMenu");
+    if(i.className == "nav-menu") {
+        i.className += "responsive";
+    } else {
+        i.className == "nav-menu";
+    }
+   }
+ 
+</script>
+<script>
+    var a = document.getElementById("loginBtn");
+    var b = document.getElementById("registerBtn");
+    var x = document.getElementById("login");
+    var y = document.getElementById("register");
+    function login() {
+        x.style.left = "4px";
+        y.style.right = "-520px";
+        a.className += " white-btn";
+        b.className = "btn";
+        x.style.opacity = 1;
+        y.style.opacity = 0;
+    }
+    function register() {
+        x.style.left = "-510px";
+        y.style.right = "5px";
+        a.className = "btn";
+        b.className += " white-btn";
+        x.style.opacity = 0;
+        y.style.opacity = 1;
+    }
+</script>
+
+    <!-- MENSAGEM ERRO BY M -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script>
+                    alert("{{ message }}");
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+</body>
+</html>

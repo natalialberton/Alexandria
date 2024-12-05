@@ -23,11 +23,6 @@ def emprestimo_gerencia():
 
 #CADASTRAMENTO
 @emprestimo_gerencia_bp.route("/lancamento-emprestimo", methods=["GET", "POST"])
-def estoque_livro(livro):
-    livro.estoque -= 1
-    db.session.commit()
-    return redirect(url_for('emprestimo_gerencia.emprestimo_gerencia'))
-    
 def lancar_emprestimo():
     if request.method == "POST":
         livro_titulo = request.form['livro']
@@ -44,8 +39,6 @@ def lancar_emprestimo():
         db.session.commit()
         
         flash("Lançamento realizado com sucesso!", "success")
-        estoque_livro(livro)
-        
         return redirect(url_for('emprestimo_gerencia.estoque_livro'))
     return redirect(url_for('emprestimo_gerencia.emprestimo_gerencia'))
 
@@ -55,17 +48,7 @@ def lancar_emprestimo():
 def editar_emprestimo(id:int):
     emprestimo = Usuario.query.get(id)
     if request.method == 'POST':
-        livro_titulo = request.form['livro-edicao']
-        cliente_nome = request.form['cliente-edicao']
-        emprestimo.email = request.form['data-emprestimo-edicao']
-        emprestimo.telefone = request.form['data-devolucao-edicao']
         emprestimo.tipo_usuario = request.form['status-emprestimo-edicao']
-    
-        livro = Livro.query.filter_by(titulo=livro_titulo).first()
-        cliente = Cliente.query.filter_by(nome=cliente_nome).first()
-        
-        emprestimo.id_livro = livro.id
-        emprestimo.id_cliente = cliente.id
         try:
             db.session.commit()
             flash("Edição realizada com sucesso!", "success")

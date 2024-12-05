@@ -61,7 +61,7 @@
             <div class="two-col">
                 <div class="input-box">
                     <input type="text", class="input-field one", name="telefone-cadastro", id="telefone-cadastro", placeholder="Telefone">
-                    <i class="bx bx-envelope"></i>
+                    <i class='bx bxs-phone' ></i>
                 </div>
                 <div class="input-box">
                     <input type="text", class="input-field one", name="email-cadastro", id="email-cadastro", placeholder="Email">
@@ -120,11 +120,9 @@
     <!-- MENSAGEM ERRO BY M -->
     {% with messages = get_flashed_messages() %}
         {% if messages %}
-            {% for message in messages %}
-                <script>
-                    alert("{{ message }}");
-                </script>
-            {% endfor %}
+            <script>
+                alert("{{ message[0] }}");
+            </script>
         {% endif %}
     {% endwith %}
 
